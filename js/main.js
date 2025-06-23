@@ -205,4 +205,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Category filter functionality
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    if (categoryBtns.length) {
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = btn.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                if (category === 'all') {
+                    products.forEach(p => p.style.display = 'block');
+                } else {
+                    products.forEach(p => {
+                        if (p.dataset.category === category) {
+                            p.style.display = 'block';
+                        } else {
+                            p.style.display = 'none';
+                        }
+                    });
+                }
+                // Remove active from all, add to current
+                categoryBtns.forEach(b => b.classList.remove('btn-primary'));
+                btn.classList.add('btn-primary');
+            });
+        });
+    }
 });
