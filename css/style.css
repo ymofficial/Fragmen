@@ -133,47 +133,50 @@ body {
     min-height: 350px;
 }
 .hero-text {
-    background: rgba(255,255,255,0.13);
-    padding: 2.5rem 2rem;
-    border-radius: 18px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-    max-width: 600px;
+    background: rgba(44,62,80,0.18);
+    padding: 2.2rem 1.2rem;
+    border-radius: 22px;
+    box-shadow: 0 6px 32px rgba(44,62,80,0.18);
+    max-width: 420px;
     text-align: center;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px) saturate(120%);
+    margin: 0 auto;
+    border: 1.5px solid rgba(255,255,255,0.18);
 }
 .hero-text h1 {
-    font-size: 2.7rem;
-    margin-bottom: 1.5rem;
+    font-size: 2.8rem;
+    margin-bottom: 1.7rem;
     font-family: var(--font-secondary);
     color: #fff;
-    text-shadow: 0 2px 8px rgba(44,62,80,0.18);
-    letter-spacing: 2px;
-    line-height: 1.18;
+    text-shadow: 0 2px 12px rgba(44,62,80,0.22);
+    letter-spacing: 2.5px;
+    line-height: 1.15;
 }
 .hero-text p {
-    font-size: 1.18rem;
-    margin-bottom: 2.2rem;
+    font-size: 1.22rem;
+    margin-bottom: 2.3rem;
     color: #f1f1f1;
-    text-shadow: 0 1px 4px rgba(44,62,80,0.12);
-    letter-spacing: 1px;
-    line-height: 1.6;
+    text-shadow: 0 1px 6px rgba(44,62,80,0.15);
+    letter-spacing: 1.2px;
+    line-height: 1.65;
 }
 @media (min-width: 768px) {
     .hero-content {
         min-height: 420px;
     }
     .hero-text {
-        padding: 3rem 4rem;
+        padding: 2.7rem 2.2rem;
+        max-width: 500px;
     }
     .hero-text h1 {
-        font-size: 3.7rem;
-        margin-bottom: 2rem;
-        letter-spacing: 3px;
+        font-size: 3.2rem;
+        margin-bottom: 2.2rem;
+        letter-spacing: 3.5px;
     }
     .hero-text p {
-        font-size: 1.35rem;
-        margin-bottom: 2.5rem;
-        letter-spacing: 1.5px;
+        font-size: 1.45rem;
+        margin-bottom: 2.7rem;
+        letter-spacing: 1.7px;
     }
 }
 
@@ -593,6 +596,39 @@ body {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+}
+
+/* Search Input */
+.search-input {
+    width: 100%;
+    max-width: 350px;
+    margin: 1.2rem 0 0 0;
+    display: block;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.08rem;
+    border-radius: 8px;
+    border: 1.5px solid #ddd;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+    background: #fff;
+    transition: border 0.2s, box-shadow 0.2s;
+    text-align: left;
+}
+@media (min-width: 600px) {
+    .products {
+        display: flex;
+        flex-direction: column;
+    }
+    .search-input {
+        align-self: flex-start;
+        margin-left: 0;
+    }
+}
+@media (max-width: 600px) {
+    .search-input {
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 0.7rem 0.8rem;
     }
 }
 
