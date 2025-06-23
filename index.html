@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fragmen - Luxury Perfumes</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Fragmen</a>
+            <div class="hamburger" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html">Home</a>
+                <a href="#products">Products</a>
+                <a href="login.html">Login</a>
+                <a href="signup.html">Sign Up</a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Your Signature Scent</h1>
+            <p>Explore our collection of luxury fragrances crafted for the modern individual</p>
+            <a href="#products" class="btn btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <section id="products" class="products">
+        <h2>Our Collections</h2>
+        <div class="product-categories">
+            <button class="btn btn-primary category-btn" data-category="all">All</button>
+            <button class="btn category-btn" data-category="men">Men</button>
+            <button class="btn category-btn" data-category="women">Women</button>
+            <button class="btn category-btn" data-category="unisex">Unisex</button>
+        </div>
+        <input type="text" id="searchProducts" placeholder="Search products..." class="search-input">
+        <div class="products-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card" data-category="men">
+                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Fragmen Ocean Breeze" class="product-image">
+                <div class="product-info">
+                    <h3>Ocean Breeze</h3>
+                    <p>A fresh and invigorating scent with notes of sea salt and citrus</p>
+                    <p class="product-price">$89.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="1">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="1">View Details</button>
+                </div>
+            </div>
+            <!-- Product Card 2 -->
+            <div class="product-card" data-category="women">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Fragmen Midnight Rose" class="product-image">
+                <div class="product-info">
+                    <h3>Midnight Rose</h3>
+                    <p>An enchanting blend of rose and exotic spices</p>
+                    <p class="product-price">$99.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="2">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="2">View Details</button>
+                </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div class="product-card" data-category="unisex">
+                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Fragmen Golden Amber" class="product-image">
+                <div class="product-info">
+                    <h3>Golden Amber</h3>
+                    <p>A warm and sophisticated fragrance with amber and vanilla notes</p>
+                    <p class="product-price">$119.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="3">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="3">View Details</button>
+                </div>
+            </div>
+            <!-- Product Card 4 -->
+            <div class="product-card" data-category="men">
+                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Fragmen Citrus Wood" class="product-image">
+                <div class="product-info">
+                    <h3>Citrus Wood</h3>
+                    <p>Vibrant citrus with a woody base for a bold impression</p>
+                    <p class="product-price">$79.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="4">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="4">View Details</button>
+                </div>
+            </div>
+            <!-- Product Card 5 -->
+            <div class="product-card" data-category="women">
+                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Fragmen Blossom Dream" class="product-image">
+                <div class="product-info">
+                    <h3>Blossom Dream</h3>
+                    <p>Floral notes with a hint of musk for a dreamy finish</p>
+                    <p class="product-price">$109.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="5">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="5">View Details</button>
+                </div>
+            </div>
+            <!-- Product Card 6 -->
+            <div class="product-card" data-category="unisex">
+                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80" alt="Fragmen Pure Essence" class="product-image">
+                <div class="product-info">
+                    <h3>Pure Essence</h3>
+                    <p>Minimalist, clean, and fresh for every occasion</p>
+                    <p class="product-price">$129.99</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="6">Add to Cart</button>
+                    <button class="btn view-details" data-product-id="6">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalDetails"></div>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial">
+                <p>“Fragmen perfumes are simply the best! The scents last all day and I always get compliments.”</p>
+                <span>- Sarah L.</span>
+            </div>
+            <div class="testimonial">
+                <p>“I love the elegant packaging and the unique fragrances. Highly recommended!”</p>
+                <span>- Michael B.</span>
+            </div>
+            <div class="testimonial">
+                <p>“Fast shipping and amazing customer service. I’ll be back for more!”</p>
+                <span>- Priya S.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Signup -->
+    <section class="newsletter">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for exclusive offers and new arrivals.</p>
+        <form id="newsletterForm">
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Fragmen</h3>
+                <p>Crafting luxury fragrances for those who appreciate the finest scents in life.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: info@fragmen.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="cart.html">Cart</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

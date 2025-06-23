@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Fragmen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Fragmen</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#products">Products</a>
+                <a href="cart.html">Cart</a>
+                <a href="checkout.html">Checkout</a>
+            </div>
+        </nav>
+    </header>
+    <section class="checkout-section">
+        <h2>Checkout</h2>
+        <div id="checkoutCart"></div>
+        <form class="checkout-form" id="checkoutForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="payment">Payment Method</label>
+                <select id="payment" name="payment" required>
+                    <option value="credit">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bkash">bKash</option>
+                    <option value="nogod">Nogod</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Place Order</button>
+        </form>
+        <div id="orderMessage" style="margin-top:1.5rem;"></div>
+    </section>
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Fragmen</h3>
+                <p>Crafting luxury fragrances for those who appreciate the finest scents in life.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Show cart summary on checkout
+    function getCart() {
+        return JSON.parse(localStorage.getItem('fragmen_cart') || '[]');
+    }
+    function setCart(cart) {
+        localStorage.setItem('fragmen_cart', JSON.stringify(cart));
+    }
+    function renderCheckoutCart() {
+        const cart = getCart();
+        const div = document.getElementById('checkoutCart');
+        if (!cart.length) {
+            div.innerHTML = '<p>Your cart is empty.</p>';
+            document.getElementById('checkoutForm').style.display = 'none';
+            return;
+        }
+        div.innerHTML = cart.map(item => `
+            <div class='cart-item'>
+                <img src='${item.img}' alt='${item.title}' style='width:60px;height:60px;object-fit:cover;border-radius:8px;margin-right:1rem;'>
+                <span style='font-weight:600;'>${item.title}</span>
+                <span>Qty: ${item.qty}</span>
+                <span style='margin-left:1rem;'>${item.price}</span>
+            </div>
+        `).join('') + `<hr><div style='text-align:right;font-size:1.2rem;font-weight:700;'>Total: $${cart.reduce((sum, i) => sum + (parseFloat(i.price.replace('$','')) * i.qty), 0).toFixed(2)}</div>`;
+    }
+    renderCheckoutCart();
+    // Handle order
+    document.getElementById('checkoutForm').onsubmit = function(e) {
+        e.preventDefault();
+        setCart([]);
+        document.getElementById('orderMessage').innerHTML = '<span style="color:green;font-weight:600;">Thank you for your order! Your cart has been cleared.</span>';
+        document.getElementById('checkoutForm').reset();
+        renderCheckoutCart();
+    };
+    </script>
+</body>
+</html>
