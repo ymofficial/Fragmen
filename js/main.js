@@ -66,16 +66,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function setCart(cart) {
         localStorage.setItem('fragmen_cart', JSON.stringify(cart));
     }
-    function addToCart(productId) {
+    function addToCart(productId, size, price) {
         const cart = getCart();
-        const found = cart.find(item => item.id === productId);
+        // If size is not provided, fallback to '6ml'
+        const selectedSize = size || '6ml';
+        const selectedPrice = price || '220 TK';
+        const found = cart.find(item => item.id === productId && item.size === selectedSize);
         if (found) {
             found.qty += 1;
         } else {
             const prod = productDetails.find(p => p.id === productId);
-            if (prod) cart.push({ id: prod.id, title: prod.title, price: prod.price, img: prod.img, qty: 1 });
+            if (prod) cart.push({ id: prod.id, title: prod.title, price: selectedPrice, img: prod.img, qty: 1, size: selectedSize });
         }
         setCart(cart);
+        updateCartBadge();
     }
 
     // Product details array
@@ -189,27 +193,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const id = addBtn.dataset.productId;
             // Get selected size if in modal
             let selectedSize = '6ml';
+            let selectedPrice = '220 TK';
             const sizeSelect = document.getElementById('sizeSelect');
             if (sizeSelect) {
                 selectedSize = sizeSelect.value;
+                selectedPrice = (selectedSize === '6ml') ? '220 TK' : '750 TK';
             }
-            // Set price based on size
-            let price = '220-750 TK';
-            if (selectedSize === '6ml') price = '220 TK';
-            if (selectedSize === '30ml') price = '750 TK';
-            // Add to cart with size and price
-            const cart = getCart();
-            const found = cart.find(item => item.id === id && item.size === selectedSize);
-            if (found) {
-                found.qty += 1;
-            } else {
-                const prod = productDetails.find(p => p.id === id);
-                if (prod) cart.push({ id: prod.id, title: prod.title, price: price, img: prod.img, qty: 1, size: selectedSize });
-            }
-            setCart(cart);
+            addToCart(id, selectedSize, selectedPrice);
             addBtn.textContent = 'Added!';
             setTimeout(() => { addBtn.textContent = 'Add to Cart'; }, 1200);
-            updateCartBadge();
         }
         if (viewBtn) {
             const id = viewBtn.dataset.productId;
@@ -259,33 +251,40 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class='cart-item'>
                     <img src='${item.img}' alt='${item.title}' style='width:60px;height:60px;object-fit:cover;border-radius:8px;margin-right:1rem;'>
                     <span style='font-weight:600;'>${item.title}</span>
-                    <span>Qty: <button class='cart-qty' data-id='${item.id}' data-action='dec'>-</button> ${item.qty} <button class='cart-qty' data-id='${item.id}' data-action='inc'>+</button></span>
+                    <span>Qty: <button class='cart-qty' data-id='${item.id}' data-size='${item.size}' data-action='dec'>-</button> ${item.qty} <button class='cart-qty' data-id='${item.id}' data-size='${item.size}' data-action='inc'>+</button></span>
                     <span style='margin-left:1rem;'>${item.price}</span>
-                    <button class='remove-cart' data-id='${item.id}' style='margin-left:1rem;color:red;'>Remove</button>
+                    <button class='remove-cart' data-id='${item.id}' data-size='${item.size}' style='margin-left:1rem;color:red;'>Remove</button>
                 </div>
             `).join('') + `<hr><div style='text-align:right;font-size:1.2rem;font-weight:700;'>Total: $${cart.reduce((sum, i) => sum + (parseFloat(i.price.replace('$','')) * i.qty), 0).toFixed(2)}</div>`;
             // Quantity and remove handlers
             cartItemsDiv.querySelectorAll('.cart-qty').forEach(btn => {
                 btn.onclick = () => {
                     const id = btn.dataset.id;
+                    const size = btn.dataset.size;
                     const action = btn.dataset.action;
                     const cart = getCart();
-                    const item = cart.find(i => i.id === id);
+                    const item = cart.find(i => i.id === id && i.size === size);
                     if (item) {
                         if (action === 'inc') item.qty += 1;
                         if (action === 'dec' && item.qty > 1) item.qty -= 1;
                         setCart(cart);
-                        location.reload();
+                        updateCartBadge(); // Update badge in real time
+                        // Optionally update the DOM without reload
+                        cartItemsDiv.querySelectorAll('.cart-qty, .remove-cart').forEach(b => b.disabled = true);
+                        setTimeout(() => location.reload(), 200); // Short delay for UI feedback
                     }
                 };
             });
             cartItemsDiv.querySelectorAll('.remove-cart').forEach(btn => {
                 btn.onclick = () => {
                     const id = btn.dataset.id;
+                    const size = btn.dataset.size;
                     let cart = getCart();
-                    cart = cart.filter(i => i.id !== id);
+                    cart = cart.filter(i => !(i.id === id && i.size === size));
                     setCart(cart);
-                    location.reload();
+                    updateCartBadge(); // Update badge in real time
+                    cartItemsDiv.querySelectorAll('.cart-qty, .remove-cart').forEach(b => b.disabled = true);
+                    setTimeout(() => location.reload(), 200);
                 };
             });
         }
@@ -335,4 +334,54 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     updateCartBadge();
+
+    // Hamburger menu toggle for responsive nav
+    const hamburger = document.getElementById('hamburgerMenu');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburger && navLinks) {
+        // Helper: close nav
+        function closeNav() {
+            navLinks.classList.remove('active');
+            document.body.classList.remove('menu-open');
+        }
+        // Open/close on hamburger
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (navLinks.classList.contains('active')) {
+                closeNav();
+            } else {
+                navLinks.classList.add('active');
+                document.body.classList.add('menu-open');
+            }
+        });
+        // Close nav on any nav link tap (touch/click)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('touchend', function(e) {
+                e.preventDefault();
+                closeNav();
+                // Simulate click for navigation
+                link.click();
+            });
+            link.addEventListener('click', function(e) {
+                closeNav();
+            });
+        });
+        // Close nav if clicking outside nav (touch/click)
+        function outsideNavHandler(e) {
+            if (navLinks.classList.contains('active')) {
+                if (!navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+                    closeNav();
+                }
+            }
+        }
+        document.addEventListener('touchend', outsideNavHandler);
+        document.addEventListener('click', outsideNavHandler);
+        // Prevent nav closing when clicking inside nav
+        navLinks.addEventListener('click', function(e) { e.stopPropagation(); });
+        navLinks.addEventListener('touchend', function(e) { e.stopPropagation(); });
+        // Hide nav on resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 900) closeNav();
+        });
+    }
 });
