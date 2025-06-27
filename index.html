@@ -11,7 +11,10 @@
 <body>
     <header class="header">
         <nav class="nav-container">
-            <a href="index.html" class="logo">Fragmen</a>
+            <a href="index.html" class="logo">
+                <img src="assets/Logo1.png" alt="Fragmen Logo" style="height:38px;width:38px;vertical-align:middle;border-radius:8px;margin-right:4px;object-fit:cover;">
+                FRAGMEN
+            </a>
             <div class="hamburger" id="hamburgerMenu">
                 <span></span>
                 <span></span>
@@ -22,7 +25,7 @@
                 <a href="#products">Products</a>
                 <a href="login.html">Login</a>
                 <a href="signup.html">Sign Up</a>
-                <a href="cart.html"><i class="fas fa-shopping-cart"></i> Cart</a>
+                <a href="cart.html" id="cartNavLink"><i class="fas fa-shopping-cart"></i> Cart <span id="cartBadge" class="cart-badge" style="display:none;">0</span></a>
             </div>
         </nav>
     </header>
@@ -50,132 +53,132 @@
         <div class="products-grid">
             <!-- Product Card 1 (Men) -->
             <div class="product-card" data-category="men">
-                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Fragmen Ocean Breeze" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Ocean Breeze" class="product-image">
                 <div class="product-info">
-                    <h3>Ocean Breeze</h3>
+                    <h3>Dior Sauvage</h3>
                     <p>A fresh and invigorating scent with notes of sea salt and citrus</p>
-                    <p class="product-price">$89.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="1">Add to Cart</button>
                     <button class="btn view-details" data-product-id="1">View Details</button>
                 </div>
             </div>
             <!-- Product Card 4 (Men) -->
             <div class="product-card" data-category="men">
-                <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80" alt="Fragmen Citrus Wood" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Citrus Wood" class="product-image">
                 <div class="product-info">
-                    <h3>Citrus Wood</h3>
+                    <h3>Blue De Chanel</h3>
                     <p>Vibrant citrus with a woody base for a bold impression</p>
-                    <p class="product-price">$79.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="4">Add to Cart</button>
                     <button class="btn view-details" data-product-id="4">View Details</button>
                 </div>
             </div>
             <!-- Product Card 7 (Men) -->
             <div class="product-card" data-category="men">
-                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=400&q=80" alt="Fragmen Noir Intense" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Noir Intense" class="product-image">
                 <div class="product-info">
-                    <h3>Noir Intense</h3>
+                    <h3>Versace Eros</h3>
                     <p>Deep, mysterious, and bold with notes of leather and spice</p>
-                    <p class="product-price">$139.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="7">Add to Cart</button>
                     <button class="btn view-details" data-product-id="7">View Details</button>
                 </div>
             </div>
             <!-- Product Card 10 (Men) -->
             <div class="product-card" data-category="men">
-                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Fragmen Blue Spirit" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Blue Spirit" class="product-image">
                 <div class="product-info">
-                    <h3>Blue Spirit</h3>
+                    <h3>Ferarri Black</h3>
                     <p>Cool aquatic notes with a hint of mint and musk</p>
-                    <p class="product-price">$99.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="10">Add to Cart</button>
                     <button class="btn view-details" data-product-id="10">View Details</button>
                 </div>
             </div>
             <!-- Product Card 2 (Women) -->
             <div class="product-card" data-category="women">
-                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Fragmen Midnight Rose" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Midnight Rose" class="product-image">
                 <div class="product-info">
-                    <h3>Midnight Rose</h3>
+                    <h3>Gucchi Flora</h3>
                     <p>An enchanting blend of rose and exotic spices</p>
-                    <p class="product-price">$99.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="2">Add to Cart</button>
                     <button class="btn view-details" data-product-id="2">View Details</button>
                 </div>
             </div>
             <!-- Product Card 5 (Women) -->
             <div class="product-card" data-category="women">
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Fragmen Blossom Dream" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Blossom Dream" class="product-image">
                 <div class="product-info">
                     <h3>Blossom Dream</h3>
                     <p>Floral notes with a hint of musk for a dreamy finish</p>
-                    <p class="product-price">$109.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="5">Add to Cart</button>
                     <button class="btn view-details" data-product-id="5">View Details</button>
                 </div>
             </div>
             <!-- Product Card 8 (Women) -->
             <div class="product-card" data-category="women">
-                <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Fragmen Velvet Petals" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Velvet Petals" class="product-image">
                 <div class="product-info">
                     <h3>Velvet Petals</h3>
                     <p>Soft floral bouquet with a creamy, powdery finish</p>
-                    <p class="product-price">$119.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="8">Add to Cart</button>
                     <button class="btn view-details" data-product-id="8">View Details</button>
                 </div>
             </div>
             <!-- Product Card 11 (Women) -->
             <div class="product-card" data-category="women">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Fragmen Pink Blossom" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Pink Blossom" class="product-image">
                 <div class="product-info">
                     <h3>Pink Blossom</h3>
                     <p>Romantic blend of peony, rose, and soft vanilla</p>
-                    <p class="product-price">$129.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="11">Add to Cart</button>
                     <button class="btn view-details" data-product-id="11">View Details</button>
                 </div>
             </div>
             <!-- Product Card 3 (Unisex) -->
             <div class="product-card" data-category="unisex">
-                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Fragmen Golden Amber" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Golden Amber" class="product-image">
                 <div class="product-info">
-                    <h3>Golden Amber</h3>
+                    <h3>Creed Aventus</h3>
                     <p>A warm and sophisticated fragrance with amber and vanilla notes</p>
-                    <p class="product-price">$119.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="3">Add to Cart</button>
                     <button class="btn view-details" data-product-id="3">View Details</button>
                 </div>
             </div>
             <!-- Product Card 6 (Unisex) -->
             <div class="product-card" data-category="unisex">
-                <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80" alt="Fragmen Pure Essence" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Pure Essence" class="product-image">
                 <div class="product-info">
                     <h3>Pure Essence</h3>
                     <p>Minimalist, clean, and fresh for every occasion</p>
-                    <p class="product-price">$129.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="6">Add to Cart</button>
                     <button class="btn view-details" data-product-id="6">View Details</button>
                 </div>
             </div>
             <!-- Product Card 9 (Unisex) -->
             <div class="product-card" data-category="unisex">
-                <img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="Fragmen Citrus Oud" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Citrus Oud" class="product-image">
                 <div class="product-info">
                     <h3>Citrus Oud</h3>
                     <p>Exotic oud wood balanced with fresh citrus zest</p>
-                    <p class="product-price">$149.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="9">Add to Cart</button>
                     <button class="btn view-details" data-product-id="9">View Details</button>
                 </div>
             </div>
             <!-- Product Card 12 (Unisex) -->
             <div class="product-card" data-category="unisex">
-                <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Fragmen Amber Woods" class="product-image">
+                <img src="assets/fragmen2.jpg" alt="Fragmen Amber Woods" class="product-image">
                 <div class="product-info">
                     <h3>Amber Woods</h3>
                     <p>Rich amber and sandalwood for a lasting impression</p>
-                    <p class="product-price">$139.99</p>
+                    <p class="product-price">220-750 TK</p>
                     <button class="btn btn-primary add-to-cart" data-product-id="12">Add to Cart</button>
                     <button class="btn view-details" data-product-id="12">View Details</button>
                 </div>

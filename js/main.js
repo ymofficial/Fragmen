@@ -82,50 +82,98 @@ document.addEventListener('DOMContentLoaded', function() {
     const productDetails = [
         {
             id: '1',
-            title: 'Ocean Breeze',
+            title: 'Dior Sauvage',
             desc: 'A fresh and invigorating scent with notes of sea salt and citrus.',
-            price: '$89.99',
-            img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'men'
         },
         {
             id: '2',
-            title: 'Midnight Rose',
+            title: 'Gucchi Flora',
             desc: 'An enchanting blend of rose and exotic spices.',
-            price: '$99.99',
-            img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'women'
         },
         {
             id: '3',
-            title: 'Golden Amber',
+            title: 'Creed Aventus',
             desc: 'A warm and sophisticated fragrance with amber and vanilla notes.',
-            price: '$119.99',
-            img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'unisex'
         },
         {
             id: '4',
-            title: 'Citrus Wood',
+            title: 'Blue De Chanel',
             desc: 'Vibrant citrus with a woody base for a bold impression.',
-            price: '$79.99',
-            img: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'men'
         },
         {
             id: '5',
             title: 'Blossom Dream',
             desc: 'Floral notes with a hint of musk for a dreamy finish.',
-            price: '$109.99',
-            img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'women'
         },
         {
             id: '6',
             title: 'Pure Essence',
             desc: 'Minimalist, clean, and fresh for every occasion.',
-            price: '$129.99',
-            img: 'https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=400&q=80',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'unisex'
+        },
+        {
+            id: '7',
+            title: 'Versace Eros',
+            desc: 'Deep, mysterious, and bold with notes of leather and spice',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'men'
+        },
+        {
+            id: '8',
+            title: 'Velvet Petals',
+            desc: 'Soft floral bouquet with a creamy, powdery finish',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'women'
+        },
+        {
+            id: '9',
+            title: 'Citrus Oud',
+            desc: 'Exotic oud wood balanced with fresh citrus zest',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'unisex'
+        },
+        {
+            id: '10',
+            title: 'Ferarri Black',
+            desc: 'Cool aquatic notes with a hint of mint and musk',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'men'
+        },
+        {
+            id: '11',
+            title: 'Pink Blossom',
+            desc: 'Romantic blend of peony, rose, and soft vanilla',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
+            category: 'women'
+        },
+        {
+            id: '12',
+            title: 'Amber Woods',
+            desc: 'Rich amber and sandalwood for a lasting impression',
+            price: '220-750 TK',
+            img: 'assets/fragmen2.jpg',
             category: 'unisex'
         }
     ];
@@ -139,9 +187,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const viewBtn = e.target.closest('.view-details');
         if (addBtn) {
             const id = addBtn.dataset.productId;
-            addToCart(id);
+            // Get selected size if in modal
+            let selectedSize = '6ml';
+            const sizeSelect = document.getElementById('sizeSelect');
+            if (sizeSelect) {
+                selectedSize = sizeSelect.value;
+            }
+            // Set price based on size
+            let price = '220-750 TK';
+            if (selectedSize === '6ml') price = '220 TK';
+            if (selectedSize === '30ml') price = '750 TK';
+            // Add to cart with size and price
+            const cart = getCart();
+            const found = cart.find(item => item.id === id && item.size === selectedSize);
+            if (found) {
+                found.qty += 1;
+            } else {
+                const prod = productDetails.find(p => p.id === id);
+                if (prod) cart.push({ id: prod.id, title: prod.title, price: price, img: prod.img, qty: 1, size: selectedSize });
+            }
+            setCart(cart);
             addBtn.textContent = 'Added!';
             setTimeout(() => { addBtn.textContent = 'Add to Cart'; }, 1200);
+            updateCartBadge();
         }
         if (viewBtn) {
             const id = viewBtn.dataset.productId;
@@ -151,10 +219,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     <img src="${prod.img}" alt="${prod.title}" style="width:200px;display:block;margin:0 auto 1rem;">
                     <h2>${prod.title}</h2>
                     <p>${prod.desc}</p>
-                    <p class="product-price">${prod.price}</p>
+                    <p class="product-price" id="modalPrice">220-750 TK</p>
+                    <label for="sizeSelect" style="font-weight:600;">Select Size:</label>
+                    <select id="sizeSelect" style="margin:0.5rem 0 1rem 0;padding:0.4rem 1rem;border-radius:6px;font-size:1rem;">
+                        <option value="" selected disabled>Choose</option>
+                        <option value="6ml">6ml</option>
+                        <option value="30ml">30ml</option>
+                    </select>
                     <button class='btn btn-primary add-to-cart' data-product-id='${prod.id}'>Add to Cart</button>
                 `;
                 modal.style.display = 'flex';
+                // Add price change on size select
+                setTimeout(() => {
+                    const sizeSelect = document.getElementById('sizeSelect');
+                    const modalPrice = document.getElementById('modalPrice');
+                    if (sizeSelect && modalPrice) {
+                        sizeSelect.addEventListener('change', function() {
+                            if (sizeSelect.value === '6ml') modalPrice.textContent = '220 TK';
+                            else if (sizeSelect.value === '30ml') modalPrice.textContent = '750 TK';
+                        });
+                    }
+                }, 10);
             }
         }
     });
@@ -230,4 +315,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Update cart badge in navbar
+    function updateCartBadge() {
+        const cart = getCart();
+        const cartBadge = document.getElementById('cartBadge');
+        const cartNavLink = document.getElementById('cartNavLink');
+        let totalQty = 0;
+        cart.forEach(item => { totalQty += item.qty; });
+        if (cartBadge) {
+            if (totalQty > 0) {
+                cartBadge.textContent = totalQty;
+                cartBadge.style.display = 'inline-block';
+                if (cartNavLink) cartNavLink.classList.add('cart-active');
+            } else {
+                cartBadge.style.display = 'none';
+                if (cartNavLink) cartNavLink.classList.remove('cart-active');
+            }
+        }
+    }
+    updateCartBadge();
 });
