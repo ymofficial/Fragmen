@@ -277,6 +277,26 @@ body {
     min-width: 110px;
 }
 
+/* Button Styles - Red Primary */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #c0392b;
+    color: #fff;
+}
+
 /* Product Categories */
 .product-categories {
     display: flex;
@@ -338,10 +358,37 @@ body {
     font-size: 1rem;
 }
 .auth-form .btn {
-    width: 100%;
-    margin-top: 0.7rem;
-    padding: 0.9rem 0;
-    font-size: 1.1rem;
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    outline: none;
+    letter-spacing: 1px;
+    margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+}
+.auth-form .btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 1px 4px rgba(44,62,80,0.10);
+}
+.auth-form .btn-primary {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
+.auth-form .btn-primary:hover, .auth-form .btn-primary:focus {
+    background-color: #c0392b;
+    color: #fff;
+}
+.auth-form .btn:hover, .auth-form .btn:focus {
+    background: var(--accent-color);
+    color: var(--primary-color);
+    box-shadow: 0 4px 16px rgba(241,196,15,0.10);
 }
 .auth-form .form-footer {
     margin-top: 1.2rem;
